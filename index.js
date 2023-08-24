@@ -3,17 +3,18 @@ const app = express()
 const PORT = 8080
 const path = require("path")
 
-// // setup call hbs with sub folder
+// setup call hbs with sub folder
 app.set("view engine","hbs")
 app.set("views",path.join(__dirname, "src/views"))
 
-// // set serving static file
-app.use(express.static("src/assets"))
+
+// set serving static file
+app.use(express.static(path.join(__dirname, "src/assets")))
 
 // //parsing data 
 app.use(express.urlencoded({ extended: false }))
 
-// //routing 
+//routing 
 app.get('/', home)
 app.get('/blog', blog)
 app.get('/blog-detail', blogDetail)
@@ -25,17 +26,17 @@ app.listen(PORT, () => {
     console.log("Server Running on port ${PORT}")
 })
 
-// //index
+//index
 function home(req, res) {
     res.render('index')
 }
 
-// //blog 
+//blog 
 function blog(req, res) {
     res.render('blog')
 }
 
-// // add a new blog
+// add a new blog
 function addBlog(req, res) {
 	const { title, startDate, endDate, content, framework, images } = req.body;
 
@@ -49,12 +50,12 @@ function addBlog(req, res) {
 	res.redirect("/");
 }
 
-// //blog-detail
+//blog-detail
 function blogDetail(req, res) {
     res.render('blog-detail')
 }
 
-// //contact 
+//contact 
 function contact(req, res) {
     res.render('contact')
 }
