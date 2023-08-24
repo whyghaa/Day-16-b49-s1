@@ -23,7 +23,7 @@
       <div class="container">
         <a class="navbar-brand" href="#">
           <img 
-            src="image/R.png" 
+            src="../image/R.png" 
             alt="Bootstrap" 
             width="40px" 
             height="40px">
@@ -44,7 +44,7 @@
               <a 
                   class="nav-link text-white fw-bold" 
                   aria-current="page" 
-                  href="index.html">Home</a>
+                  href="./index">Home</a>
             </li>
             <li class="nav-item ms-3">
               <a class="nav-link active text-white fw-bold" href="#">Blog</a>
@@ -54,7 +54,7 @@
             <a 
                 class=" btn btn-outline text-white fw-bold" 
                 style="background-color: #a2b2ee;" 
-                type="submit" href="contact.html">Contact Me</a>
+                type="submit" href="./contact">Contact Me</a>
           </form>
         </div>
       </div>
@@ -69,10 +69,11 @@
                     <h2>Created Blog</h2>
                 </div>
             </div>
+            <form method="post" action="/blog">
             <div class="row mb-3 justify-content-center ">
                 <div class="col-8  ">
                     <label for="input-title" class="form-label fs-3">Project Name</label>
-					<input type="text" class="form-control shadow-sm bg-secondary-subtle" id="input-title" />
+					<input type="text" class="form-control shadow-sm bg-secondary-subtle" id="input-title" name="title"/>
                 </div>
             </div>
             <div class="row mb-3 justify-content-center">
@@ -81,20 +82,23 @@
                 <input
                     type="date"
                     class="form-control shadow-sm bg-secondary-subtle"
-                    id="input-blog-startDate" />
+                    id="input-blog-startDate" 
+                    name="startDate"/>
             </div>
             <div class="col-md-4">
                 <label for="input-blog-endDate" class="form-label fs-3">End Date</label>
                 <input
                     type="date"
                     class="form-control shadow-sm bg-secondary-subtle"
-                    id="input-blog-endDate" />
+                    id="input-blog-endDate"
+                    name="endDate"/>
             </div>
         </div>
         <div class="row mb-3 justify-content-center">
             <div class="col-8">
                 <label for="input-blog-content" class="form-label fs-3">Description</label>
-					<textarea
+					<textarea 
+                        name="content"
 						class="form-control shadow-sm bg-secondary-subtle"
 						id="input-blog-content"
 						rows="3"
@@ -113,7 +117,8 @@
                         class="form-check-input bg-secondary-subtle"
                         type="checkbox"
                         value="nodejs"
-                        id="checkbox-nodejs" />
+                        id="checkbox-nodejs"
+                        name="framework" />
                     <label class="form-check-label fs-3" for="checkbox-nodejs">Node Js</label>
                 </div>
                 <div class="form-check d-flex align-items-center gap-2">
@@ -121,7 +126,8 @@
                         class="form-check-input bg-secondary-subtle"
                         type="checkbox"
                         value="reactjs"
-                        id="checkbox-reactjs" />
+                        id="checkbox-reactjs"
+                        name="framework" />
                     <label class="form-check-label fs-3" for="checkbox-reactjs">React Js</label>
                 </div>
             </div>
@@ -131,7 +137,8 @@
                         class="form-check-input bg-secondary-subtle"
                         type="checkbox"
                         value="nextjs"
-                        id="checkbox-nextjs" />
+                        id="checkbox-nextjs"
+                        name="framework" />
                     <label class="form-check-label fs-3" for="checkbox-nextjs">Next Js</label>
                 </div>
                 <div class="form-check d-flex align-items-center gap-2">
@@ -139,19 +146,21 @@
                         class="form-check-input bg-secondary-subtle"
                         type="checkbox"
                         value="typescript"
-                        id="checkbox-typescript" />
+                        id="checkbox-typescript"
+                        name="framework" />
                     <label class="form-check-label fs-3" for="checkbox-typescript">TypeScript</label>
                 </div>
             </div>
             <div class="row mb-3 justify-content-center">
                 <div class="col-8">
                     <label for="formFile" class="form-label fs-3 ">Upload Image</label>
-					<input class="form-control " type="file" id="formFile" />
+					<input class="form-control " type="file" id="formFile" name="images" />
                 </div>
             </div>
             <div class="row mb-3 d-flex justify-content-end">
                 <div class="col-4">
-                    <button class="btn btn-primary rounded-pill px-5" type="button">Submit</button>
+                    <button class="btn btn-primary rounded-pill px-5" type="submit">Submit</button>
                 </div>
             </div>
+            </form>
     </section>
