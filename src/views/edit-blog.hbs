@@ -18,51 +18,8 @@
     />
   </head>
   <body style="font-family: 'Poppins', sans-serif;">
-
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg " style="background-color: #26292b;">
-      <div class="container">
-        <a class="navbar-brand" href="#">
-          <img 
-            src="../image/R.png" 
-            alt="Bootstrap" 
-            width="40px" 
-            height="40px">
-        </a>
-        <button 
-            class="navbar-toggler text-white" 
-            type="button" 
-            data-bs-toggle="collapse" 
-            data-bs-target="#navbarSupportedContent" 
-            aria-controls="navbarSupportedContent" 
-            aria-expanded="false" 
-            aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"><i class="fa-solid fa-bars my-1"></i></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item ms-3">
-              <a 
-                  class="nav-link text-white fw-bold" 
-                  aria-current="page" 
-                  href="/">Home</a>
-            </li>
-            <li class="nav-item ms-3">
-              <a class="nav-link active text-white fw-bold" href="#">Blog</a>
-            </li>
-          </ul>
-          <form class="d-flex" role="search">
-            <a 
-                class=" btn btn-outline text-white fw-bold" 
-                style="background-color: #a2b2ee;" 
-                type="submit" href="/contact">Contact Me</a>
-          </form>
-        </div>
-      </div>
-    </nav>
-    <!-- End Navbar -->
-
-    <!-- From Blog -->
+    
+     <!-- From Blog -->
     <section>
         <div class="container">
             <div class="row">
@@ -70,24 +27,30 @@
                     <h2>Created Blog</h2>
                 </div>
             </div>
-            <form method="post" action="/blog">
+            <form method="post" action="/update-blog/{{blogIndex}}">
             <div class="row mb-3 justify-content-center ">
-                <div class="col-sm-8  ">
-                    <label for="input-title" class="form-label fs-4">Project Name</label>
-					<input type="text" class="form-control shadow-sm bg-secondary-subtle" id="input-title" name="title"/>
+                <div class="col-8  ">
+                    <label for="input-title" class="form-label fs-3">Project Name</label>
+					<input 
+                        type="text" 
+                        class="form-control shadow-sm bg-secondary-subtle" 
+                        id="input-title" 
+                        name="title"
+                        placeholder="{{blog.title}}"
+						value="{{blog.title}}"/>
                 </div>
             </div>
-            <div class="row mb-ms-3 justify-content-center">
-            <div class="col-sm-4">
-                <label for="input-blog-startDate" class="form-label fs-4 ">Start Date</label>
+            <div class="row mb-3 justify-content-center">
+            <div class="col-md-4">
+                <label for="input-blog-startDate" class="form-label fs-3 ">Start Date</label>
                 <input
                     type="date"
                     class="form-control shadow-sm bg-secondary-subtle"
                     id="input-blog-startDate" 
                     name="startDate"/>
             </div>
-            <div class="col-sm-4">
-                <label for="input-blog-endDate" class="form-label fs-4">End Date</label>
+            <div class="col-md-4">
+                <label for="input-blog-endDate" class="form-label fs-3">End Date</label>
                 <input
                     type="date"
                     class="form-control shadow-sm bg-secondary-subtle"
@@ -96,23 +59,25 @@
             </div>
         </div>
         <div class="row mb-3 justify-content-center">
-            <div class="col-sm-8">
-                <label for="input-blog-content" class="form-label fs-4">Description</label>
+            <div class="col-8">
+                <label for="input-blog-content" class="form-label fs-3">Description</label>
 					<textarea 
                         name="content"
 						class="form-control shadow-sm bg-secondary-subtle"
 						id="input-blog-content"
+                        placeholder="{{blog.content}}"
+						value="{{blog.content}}"
 						rows="3"
-						style="height: 200px; resize: none"></textarea>
+						style="height: 200px; resize: none">{{blog.content}}</textarea>
             </div>
         </div>
         <div class="row mb-2 justify-content-center">
-            <div class="col-sm-8">
-                <label class="form-label fs-4">Technologies</label>
+            <div class="col-8">
+                <label class="form-label fs-3">Technologies</label>
             </div>
         </div>
-        <div class="row justify-content-center fs-5">
-            <div class="col-sm-4 ">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
                 <div class="form-check d-flex align-items-center gap-2">
                     <input
                         class="form-check-input bg-secondary-subtle"
@@ -120,7 +85,7 @@
                         value="nodejs"
                         id="checkbox-nodejs"
                         name="framework" />
-                    <label class="form-check-label fs-4" for="checkbox-nodejs">Node Js</label>
+                    <label class="form-check-label fs-3" for="checkbox-nodejs">Node Js</label>
                 </div>
                 <div class="form-check d-flex align-items-center gap-2">
                     <input
@@ -129,10 +94,10 @@
                         value="reactjs"
                         id="checkbox-reactjs"
                         name="framework" />
-                    <label class="form-check-label fs-4" for="checkbox-reactjs">React Js</label>
+                    <label class="form-check-label fs-3" for="checkbox-reactjs">React Js</label>
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-md-4">
                 <div class="form-check d-flex align-items-center gap-2">
                     <input
                         class="form-check-input bg-secondary-subtle"
@@ -140,26 +105,30 @@
                         value="nextjs"
                         id="checkbox-nextjs"
                         name="framework" />
-                    <label class="form-check-label fs-4" for="checkbox-nextjs">Next Js</label>
+                    <label class="form-check-label fs-3" for="checkbox-nextjs">Next Js</label>
                 </div>
-                <div class="form-check d-flex align-items-center gap-2 mb-3">
+                <div class="form-check d-flex align-items-center gap-2">
                     <input
                         class="form-check-input bg-secondary-subtle"
                         type="checkbox"
                         value="typescript"
                         id="checkbox-typescript"
                         name="framework" />
-                    <label class="form-check-label fs-4" for="checkbox-typescript">TypeScript</label>
+                    <label class="form-check-label fs-3" for="checkbox-typescript">TypeScript</label>
                 </div>
             </div>
             <div class="row mb-3 justify-content-center">
-                <div class="col-sm-8">
-                    <label for="formFile" class="form-label fs-4 ">Upload Image</label>
-					<input class="form-control " type="file" id="formFile" name="images" />
+                <div class="col-8">
+                    <label for="formFile" class="form-label fs-3 ">Upload Image</label>
+					<input class="form-control " 
+                           type="file" 
+                           id="formFile" 
+                           name="images" />
                 </div>
             </div>
+            <input type="hidden" name="blogIndex" value="{{blogIndex}}" />
             <div class="row mb-3 d-flex justify-content-end">
-                <div class="col-sm-4">
+                <div class="col-4">
                     <button class="btn btn-primary rounded-pill px-5" type="submit">Submit</button>
                 </div>
             </div>
