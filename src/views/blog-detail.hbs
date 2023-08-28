@@ -67,13 +67,19 @@
         <div class="border p-5 bg-secondary-subtle">
             <h2 class="text-center fw-bold fs-1">{{blog.title}}</h2>
             <div class="container">
-                <div class="row justify-content-between m-5">
-                    <div class="col-sm-6">
-                        <img src="../image/project-1.jpg" alt="project-1">
+                <div class="row justify-content-between m-0 m-lg-5">
+                    <div class="col-sm-3 d-lg-none d-block my-3">
+                        <img src="../image/project-1.jpg" 
+                             alt="project-1"
+                             width="270" height="150">
+                    </div>
+                    <div class="col-sm-6 d-lg-block d-none">
+                        <img src="../image/project-1.jpg" 
+                             alt="project-1">
                     </div>
                     <div class="col-sm-4">
                         <h4 class="fw-bold fs-3">Duration</h4>
-                        <p><i class="fa-regular fa-calendar-days"></i> 20 September 2023 - 24 Agustus 2023</p>
+                        <p><i class="fa-regular fa-calendar-days"></i> Durasi : {{this.duration}} </p>
                         <p><i class="fa-regular fa-clock"></i> 1 Moth</p>
                         <h4 class="fw-bold fs-3">Technologies</h4>
                         <div class="gap-5 fs-5 mb-3" style="display: flex;">

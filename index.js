@@ -17,19 +17,40 @@ app.use(express.urlencoded({ extended: false }))
 // dummy data
 const dataBlog = [
 	{
-	  title: "Android Development",
-	  content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut amet culpa fugiat minus impedit beatae itaque modi accusamus enim tenetur, officiis ab fugit quam neque ex iusto, quibusdam molestias dignissimos! A nobis exercitationem sit, eaque voluptatibus dignissimos nemo omnis numquam vitae nesciunt nisi rerum voluptates, unde expedita, ipsum quaerat perferendis quas deleniti. Fuga, vero id? Ut eius harum eos illo aut placeat laboriosam, odit dolores similique. Atque maiores expedita, earum explicabo eveniet fugiat praesentium est sed ducimus ad corrupti quae quod nulla distinctio alias soluta porro doloremque facere dicta minus! Quia id iusto iure enim sunt cumque debitis repudiandae consequuntur!",
-	  images: "image/project-1.jpg",
+		title: "Android Development",
+		startDate: "2023-08-01",
+		endDate: "2023-09-01",
+		duration : "1 bulan",
+		content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut amet culpa fugiat minus impedit beatae itaque modi accusamus enim tenetur, officiis ab fugit quam neque ex iusto, quibusdam molestias dignissimos! A nobis exercitationem sit, eaque voluptatibus dignissimos nemo omnis numquam vitae nesciunt nisi rerum voluptates, unde expedita, ipsum quaerat perferendis quas deleniti. Fuga, vero id? Ut eius harum eos illo aut placeat laboriosam, odit dolores similique. Atque maiores expedita, earum explicabo eveniet fugiat praesentium est sed ducimus ad corrupti quae quod nulla distinctio alias soluta porro doloremque facere dicta minus! Quia id iusto iure enim sunt cumque debitis repudiandae consequuntur!",
+		images: "image/project-1.jpg",
+		js: true,
+		reactjs: true,
+		vuejs: true,
+		nodejs: true,
 	},
 	{
-	  title: "Mobile Developer",
-	  content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut amet culpa fugiat minus impedit beatae itaque modi accusamus enim tenetur, officiis ab fugit quam neque ex iusto, quibusdam molestias dignissimos! A nobis exercitationem sit, eaque voluptatibus dignissimos nemo omnis numquam vitae nesciunt nisi rerum voluptates, unde expedita, ipsum quaerat perferendis quas deleniti. Fuga, vero id? Ut eius harum eos illo aut placeat laboriosam, odit dolores similique. Atque maiores expedita, earum explicabo eveniet fugiat praesentium est sed ducimus ad corrupti quae quod nulla distinctio alias soluta porro doloremque facere dicta minus! Quia id iusto iure enim sunt cumque debitis repudiandae consequuntur!",
-	  images: "image/project-4.png",
+		title: "Android Development",
+		startDate: "2023-08-01",
+		endDate: "2023-09-01",
+		duration : "1 bulan",
+		content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut amet culpa fugiat minus impedit beatae itaque modi accusamus enim tenetur, officiis ab fugit quam neque ex iusto, quibusdam molestias dignissimos! A nobis exercitationem sit, eaque voluptatibus dignissimos nemo omnis numquam vitae nesciunt nisi rerum voluptates, unde expedita, ipsum quaerat perferendis quas deleniti. Fuga, vero id? Ut eius harum eos illo aut placeat laboriosam, odit dolores similique. Atque maiores expedita, earum explicabo eveniet fugiat praesentium est sed ducimus ad corrupti quae quod nulla distinctio alias soluta porro doloremque facere dicta minus! Quia id iusto iure enim sunt cumque debitis repudiandae consequuntur!",
+		images: "image/project-1.jpg",
+		js: true,
+		reactjs: true,
+		vuejs: true,
+		nodejs: true,
 	},
 	{
-	  title: "Web Developer",
-	  content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut amet culpa fugiat minus impedit beatae itaque modi accusamus enim tenetur, officiis ab fugit quam neque ex iusto, quibusdam molestias dignissimos! A nobis exercitationem sit, eaque voluptatibus dignissimos nemo omnis numquam vitae nesciunt nisi rerum voluptates, unde expedita, ipsum quaerat perferendis quas deleniti. Fuga, vero id? Ut eius harum eos illo aut placeat laboriosam, odit dolores similique. Atque maiores expedita, earum explicabo eveniet fugiat praesentium est sed ducimus ad corrupti quae quod nulla distinctio alias soluta porro doloremque facere dicta minus! Quia id iusto iure enim sunt cumque debitis repudiandae consequuntur!",
-	  images: "image/project-2.png",
+		title: "Android Development",
+		startDate: "2023-08-01",
+		endDate: "2023-09-01",
+		duration : "1 bulan",
+		content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut amet culpa fugiat minus impedit beatae itaque modi accusamus enim tenetur, officiis ab fugit quam neque ex iusto, quibusdam molestias dignissimos! A nobis exercitationem sit, eaque voluptatibus dignissimos nemo omnis numquam vitae nesciunt nisi rerum voluptates, unde expedita, ipsum quaerat perferendis quas deleniti. Fuga, vero id? Ut eius harum eos illo aut placeat laboriosam, odit dolores similique. Atque maiores expedita, earum explicabo eveniet fugiat praesentium est sed ducimus ad corrupti quae quod nulla distinctio alias soluta porro doloremque facere dicta minus! Quia id iusto iure enim sunt cumque debitis repudiandae consequuntur!",
+		images: "image/project-1.jpg",
+		js: true,
+		reactjs: true,
+		vuejs: true,
+		nodejs: true,
 	}
   ]
 
@@ -60,7 +81,41 @@ function blog(req, res) {
 
 // add a new blog
 function addBlog(req, res) {
-	const { title, startDate, endDate, content, images } = req.body;
+	const { 
+			title, 
+			startDate, 
+			endDate, 
+			content, 
+			images,
+			js,
+			reactjs,
+			vuejs,
+			nodejs,
+		} = req.body;
+
+	let start = new Date(startDate);
+	let end = new Date(endDate);
+
+	if (start > end) {
+		return res.send("You Fill End Date Before Start Date");
+	}
+
+	let difference = end.getTime() - start.getTime();
+	let days = difference / (1000 * 3600 * 24);
+	let weeks = Math.floor(days / 7);
+	let months = Math.floor(weeks / 4);
+	let years = Math.floor(months / 12);
+	let duration = "";
+
+	if (years > 0) {
+		duration = years + " Tahun";
+	} else if (months > 0) {
+		duration = months + " Bulan";
+	} else if (weeks > 0) {
+		duration = weeks + " Minggu";
+	} else if (days > 0) {
+		duration = days + " Hari";
+	}	
 
 	const data = {
 		  title,
@@ -68,6 +123,11 @@ function addBlog(req, res) {
 		  images,
 		  startDate,
 		  endDate,
+		  duration,
+		  js,
+		  reactjs,
+	      vuejs,
+		  nodejs,
 	};
 
 	dataBlog.push(data)
@@ -83,10 +143,51 @@ function editBlog(req, res) {
 // update blog
 function updateBlog(req, res) {
 	const blogIndex = parseInt(req.body.blogIndex)
-	const { title, content } = req.body;
+	const { title,
+			content,
+			images,
+			startDate,
+			endDate,
+			js,
+			reactjs,
+			vuejs, 
+			nodejs,
+		} = req.body;
+	
+		let start = new Date(startDate);
+		let end = new Date(endDate);
+	
+		if (start > end) {
+			return res.send("You Fill End Date Before Start Date");
+		}
+	
+		let difference = end.getTime() - start.getTime();
+		let days = difference / (1000 * 3600 * 24);
+		let weeks = Math.floor(days / 7);
+		let months = Math.floor(weeks / 4);
+		let years = Math.floor(months / 12);
+		let duration = "";
+	
+		if (years > 0) {
+			duration = years + " Tahun";
+		} else if (months > 0) {
+			duration = months + " Bulan";
+		} else if (weeks > 0) {
+			duration = weeks + " Minggu";
+		} else if (days > 0) {
+			duration = days + " Hari";
+		}	
 
 	dataBlog[blogIndex].title = title;
+	dataBlog[blogIndex].startDate = startDate;
+	dataBlog[blogIndex].endDate = endDate;
 	dataBlog[blogIndex].content = content;
+	dataBlog[blogIndex].images = images;
+	dataBlog[blogIndex].duration = duration;
+	dataBlog[blogIndex].js = js;
+	dataBlog[blogIndex].reactjs = reactjs;
+	dataBlog[blogIndex].nodejs = nodejs;
+	dataBlog[blogIndex].vuejs = vuejs;
 
 	res.redirect("/");
 }
@@ -109,3 +210,4 @@ function deleteBlog(req, res) {
 	dataBlog.splice(id, 1)
 	res.redirect("/")
 }
+
