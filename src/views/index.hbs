@@ -70,7 +70,7 @@
 					          box-shadow: 0 0 10px black;">
         <div class="row justify-content-evenly align-items-center">
           <div class="col-sm-5" style="text-align: justify; " >
-            <h1 >Hi, Welcome to my hut</h1>
+            <h1 class="fw-bold">Hi, Welcome to my hut</h1>
             <p class="mt-3 ">
             Introducing my name is Rangga, I live in Cikande Serang, Banten, I
             am 21 years old and I am currently studying at a well-known
@@ -118,39 +118,39 @@
         <div class="container">
           <div class="row">
             <div class="col-sm-11">
-              <h2 class="text-center my-4 mx-4">My Project</h2>
+              <h2 class="text-center my-4 mx-4 fw-bold">My Project</h2>
             </div>
           </div>
           <div class="row">
             {{#each dataBlog}}
             <div class="col-lg-4 d-flex flex-column justify-content-center mb-5 ms-4 ms-lg-0">
               <div class="card p-2 " style="width: 320px; box-shadow: 0 0 10px black;">
-                <img src="{{this.images}}" class="card-img-top" alt="project1">
+                <img src="{{this.image}}" class="card-img-top" alt="project1">
                 <div class="card-body">
                   <h5 class="card-title fw-bold" 
                         href="/blog-detail/{{@index}}"
                         class="text-decoration-none text-dark"
                         target="_blank">
-                    <a href="/blog-detail/{{@index}}" style="color: black; text-decoration: none;">
-                    {{this.title}}</a></h5>
+                    <a href="/blog-detail/{{@index}}" 
+                       style="color: black; text-decoration: none;">{{this.name}}</a></h5>
                   <p class="mt-3" style="font-size: 14px;">Durasi : {{this.duration}}</p>
                   <p class="card-text" 
                 style="text-align: justify; 
                 overflow: hidden; 
                 display: -webkit-box; 
                 -webkit-line-clamp: 4;
-                -webkit-box-orient: vertical;">{{this.content}}</p>
+                -webkit-box-orient: vertical;">{{this.description}}</p>
                   <div class="gap-5 fs-3 mb-3">
-                    {{#if this.js}}
+                    {{#if this.technologies.js}}
                     <a><i class="fa-brands fa-js"></i></a>
                     {{/if}}
-                    {{#if this.reactjs}}
+                    {{#if this.technologies.reactjs}}
                     <a><i class="fa-brands fa-react"></i></a>
                     {{/if}}
-                    {{#if this.vuejs}}
+                    {{#if this.technologies.vuejs}}
                     <a><i class="fa-brands fa-vuejs"></i></a>
                     {{/if}}
-                    {{#if this.nodejs}}
+                    {{#if this.technologies.nodejs}}
                     <a><i class="fa-brands fa-node"></i></a>
                     {{/if}}
                   </div>

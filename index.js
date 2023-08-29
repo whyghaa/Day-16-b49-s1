@@ -3,6 +3,11 @@ const app = express()
 const PORT = 8080
 const path = require("path")
 
+// sequelize init
+const config = require('./src/config/config.json')
+const { Sequelize, QueryTypes } = require('sequelize')
+const sequelize = new Sequelize(config.development)
+
 // setup call hbs with sub folder
 app.set("view engine","hbs")
 app.set("views",path.join(__dirname, "src/views"))
@@ -11,55 +16,58 @@ app.set("views",path.join(__dirname, "src/views"))
 // set serving static file
 app.use(express.static(path.join(__dirname, "src/assets")))
 
+// set serving static file specific
+app.use(express.static(path.join(__dirname, "src/assets/image")));
+
 // //parsing data 
 app.use(express.urlencoded({ extended: false }))
 
 // dummy data
-const dataBlog = [
-	{
-		title: "Android Development",
-		startDate: "2023-08-01",
-		endDate: "2023-09-01",
-		duration : "1 bulan",
-		content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut amet culpa fugiat minus impedit beatae itaque modi accusamus enim tenetur, officiis ab fugit quam neque ex iusto, quibusdam molestias dignissimos! A nobis exercitationem sit, eaque voluptatibus dignissimos nemo omnis numquam vitae nesciunt nisi rerum voluptates, unde expedita, ipsum quaerat perferendis quas deleniti. Fuga, vero id? Ut eius harum eos illo aut placeat laboriosam, odit dolores similique. Atque maiores expedita, earum explicabo eveniet fugiat praesentium est sed ducimus ad corrupti quae quod nulla distinctio alias soluta porro doloremque facere dicta minus! Quia id iusto iure enim sunt cumque debitis repudiandae consequuntur!",
-		images: "image/project-1.jpg",
-		js: true,
-		reactjs: true,
-		vuejs: true,
-		nodejs: true,
-	},
-	{
-		title: "Android Development",
-		startDate: "2023-08-01",
-		endDate: "2023-09-01",
-		duration : "1 bulan",
-		content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut amet culpa fugiat minus impedit beatae itaque modi accusamus enim tenetur, officiis ab fugit quam neque ex iusto, quibusdam molestias dignissimos! A nobis exercitationem sit, eaque voluptatibus dignissimos nemo omnis numquam vitae nesciunt nisi rerum voluptates, unde expedita, ipsum quaerat perferendis quas deleniti. Fuga, vero id? Ut eius harum eos illo aut placeat laboriosam, odit dolores similique. Atque maiores expedita, earum explicabo eveniet fugiat praesentium est sed ducimus ad corrupti quae quod nulla distinctio alias soluta porro doloremque facere dicta minus! Quia id iusto iure enim sunt cumque debitis repudiandae consequuntur!",
-		images: "image/project-1.jpg",
-		js: true,
-		reactjs: true,
-		vuejs: true,
-		nodejs: true,
-	},
-	{
-		title: "Android Development",
-		startDate: "2023-08-01",
-		endDate: "2023-09-01",
-		duration : "1 bulan",
-		content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut amet culpa fugiat minus impedit beatae itaque modi accusamus enim tenetur, officiis ab fugit quam neque ex iusto, quibusdam molestias dignissimos! A nobis exercitationem sit, eaque voluptatibus dignissimos nemo omnis numquam vitae nesciunt nisi rerum voluptates, unde expedita, ipsum quaerat perferendis quas deleniti. Fuga, vero id? Ut eius harum eos illo aut placeat laboriosam, odit dolores similique. Atque maiores expedita, earum explicabo eveniet fugiat praesentium est sed ducimus ad corrupti quae quod nulla distinctio alias soluta porro doloremque facere dicta minus! Quia id iusto iure enim sunt cumque debitis repudiandae consequuntur!",
-		images: "image/project-1.jpg",
-		js: true,
-		reactjs: true,
-		vuejs: true,
-		nodejs: true,
-	}
-  ]
+// const dataBlog = [
+// 	{
+// 		title: "Android Development",
+// 		startDate: "2023-08-01",
+// 		endDate: "2023-09-01",
+// 		duration : "1 bulan",
+// 		content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut amet culpa fugiat minus impedit beatae itaque modi accusamus enim tenetur, officiis ab fugit quam neque ex iusto, quibusdam molestias dignissimos! A nobis exercitationem sit, eaque voluptatibus dignissimos nemo omnis numquam vitae nesciunt nisi rerum voluptates, unde expedita, ipsum quaerat perferendis quas deleniti. Fuga, vero id? Ut eius harum eos illo aut placeat laboriosam, odit dolores similique. Atque maiores expedita, earum explicabo eveniet fugiat praesentium est sed ducimus ad corrupti quae quod nulla distinctio alias soluta porro doloremque facere dicta minus! Quia id iusto iure enim sunt cumque debitis repudiandae consequuntur!",
+// 		images: "image/project-1.jpg",
+// 		js: true,
+// 		reactjs: true,
+// 		vuejs: true,
+// 		nodejs: true,
+// 	},
+// 	{
+// 		title: "Android Development",
+// 		startDate: "2023-08-01",
+// 		endDate: "2023-09-01",
+// 		duration : "1 bulan",
+// 		content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut amet culpa fugiat minus impedit beatae itaque modi accusamus enim tenetur, officiis ab fugit quam neque ex iusto, quibusdam molestias dignissimos! A nobis exercitationem sit, eaque voluptatibus dignissimos nemo omnis numquam vitae nesciunt nisi rerum voluptates, unde expedita, ipsum quaerat perferendis quas deleniti. Fuga, vero id? Ut eius harum eos illo aut placeat laboriosam, odit dolores similique. Atque maiores expedita, earum explicabo eveniet fugiat praesentium est sed ducimus ad corrupti quae quod nulla distinctio alias soluta porro doloremque facere dicta minus! Quia id iusto iure enim sunt cumque debitis repudiandae consequuntur!",
+// 		images: "image/project-2.png",
+// 		js: true,
+// 		reactjs: true,
+// 		vuejs: true,
+// 		nodejs: true,
+// 	},
+// 	{
+// 		title: "Android Development",
+// 		startDate: "2023-08-01",
+// 		endDate: "2023-09-01",
+// 		duration : "1 bulan",
+// 		content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut amet culpa fugiat minus impedit beatae itaque modi accusamus enim tenetur, officiis ab fugit quam neque ex iusto, quibusdam molestias dignissimos! A nobis exercitationem sit, eaque voluptatibus dignissimos nemo omnis numquam vitae nesciunt nisi rerum voluptates, unde expedita, ipsum quaerat perferendis quas deleniti. Fuga, vero id? Ut eius harum eos illo aut placeat laboriosam, odit dolores similique. Atque maiores expedita, earum explicabo eveniet fugiat praesentium est sed ducimus ad corrupti quae quod nulla distinctio alias soluta porro doloremque facere dicta minus! Quia id iusto iure enim sunt cumque debitis repudiandae consequuntur!",
+// 		images: "image/project-3.jpg",
+// 		js: true,
+// 		reactjs: true,
+// 		vuejs: true,
+// 		nodejs: true,
+// 	}
+//   ]
 
 //routing 
 app.get('/', home)
 app.get('/blog', blog)
+app.post('/blog', addBlog)
 app.get('/blog-detail/:id', blogDetail)
 app.get('/contact', contact)
-app.post('/blog', addBlog)
 app.get("/edit-blog/:id", editBlog)
 app.post("/update-blog/:id", updateBlog)
 app.get("/delete-blog/:id", deleteBlog)
@@ -69,14 +77,33 @@ app.listen(PORT, () => {
     console.log("Server Running on port ${PORT}")
 })
 
+
 //index
-function home(req, res) {
-    res.render('index', {dataBlog})
+async function home(req, res) {
+	try {
+		const query = `SELECT id, name, start_date, end_date, description, technologies, image FROM "Users";`
+		let obj = await sequelize.query(query, { type: QueryTypes.SELECT})
+		
+		const data = obj.map(res => ({
+			...res,
+			technologies : {
+					js: true,
+					reactjs: false,
+					vuejs: true,
+					nodejs: true,
+			},
+	  }))
+  
+	  console.log(data)
+	  res.render("index", { dataBlog: data })
+	} catch (error) {
+		console.log(error)
+	} 
 }
 
-//blog 
+// blog
 function blog(req, res) {
-    res.render('blog')
+	res.render("blog");
 }
 
 // add a new blog
