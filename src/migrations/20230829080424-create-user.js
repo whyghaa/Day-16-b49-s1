@@ -21,12 +21,26 @@ module.exports = {
       description: {
         type: Sequelize.TEXT
       },
-      technologies: {
-        type: Sequelize.ARRAY(Sequelize.STRING)
+      // technologies: {
+      //   type: Sequelize.ARRAY(Sequelize.STRING)
+      // allowNull: false,
+			// 	defaultValue: [],
+      // },
+      javascript: {
+        type: Sequelize.BOOLEAN,
       },
-      image: {
-        type: Sequelize.STRING
-      }
+			reactjs: {
+        type: Sequelize.BOOLEAN,
+			},
+			vuejs: {
+        type: Sequelize.BOOLEAN,
+			},
+      nodejs: {
+        type: Sequelize.BOOLEAN,
+      },
+			image: {
+        type: Sequelize.STRING,
+			},
       // createdAt: {
       //   allowNull: false, //   type: Sequelize.DATE
       // },

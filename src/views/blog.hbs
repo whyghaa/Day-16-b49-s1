@@ -70,11 +70,16 @@
                     <h2>Created Blog</h2>
                 </div>
             </div>
-            <form method="post" action="/blog">
+            <form method="post" 
+                  action="/blog">
             <div class="row mb-3 justify-content-center ">
                 <div class="col-sm-8  ">
-                    <label for="input-title" class="form-label fs-4">Project Name</label>
-					<input type="text" class="form-control shadow-sm bg-secondary-subtle" id="input-title" name="title"/>
+                    <label for="input-title" 
+                           class="form-label fs-4">Project Name</label>
+					<input type="text" 
+                           class="form-control shadow-sm bg-secondary-subtle" 
+                           id="input-title" 
+                           name="name"/>
                 </div>
             </div>
             <div class="row mb-ms-3 justify-content-center">
@@ -84,7 +89,7 @@
                     type="date"
                     class="form-control shadow-sm bg-secondary-subtle"
                     id="input-blog-startDate" 
-                    name="startDate"/>
+                    name="start_date"/>
             </div>
             <div class="col-sm-4">
                 <label for="input-blog-endDate" class="form-label fs-4">End Date</label>
@@ -92,14 +97,14 @@
                     type="date"
                     class="form-control shadow-sm bg-secondary-subtle"
                     id="input-blog-endDate"
-                    name="endDate"/>
+                    name="end_date"/>
             </div>
         </div>
         <div class="row mb-3 justify-content-center">
             <div class="col-sm-8">
                 <label for="input-blog-content" class="form-label fs-4">Description</label>
 					<textarea 
-                        name="content"
+                        name="description"
 						class="form-control shadow-sm bg-secondary-subtle"
 						id="input-blog-content"
 						rows="3"
@@ -117,16 +122,16 @@
                     <input
                         class="form-check-input bg-secondary-subtle"
                         type="checkbox"
-                        value="nodejs"
-                        id="checkbox-nodejs"
-                        name="js" />
-                    <label class="form-check-label fs-4" for="checkbox-nodejs">JavaScript</label>
+                        value="true"
+                        id="checkbox-javascript"
+                        name="javascript" />
+                    <label class="form-check-label fs-4" for="checkbox-javascript">JavaScript</label>
                 </div>
                 <div class="form-check d-flex align-items-center gap-2">
                     <input
                         class="form-check-input bg-secondary-subtle"
                         type="checkbox"
-                        value="reactjs"
+                        value="true"
                         id="checkbox-reactjs"
                         name="reactjs" />
                     <label class="form-check-label fs-4" for="checkbox-reactjs">React Js</label>
@@ -137,7 +142,7 @@
                     <input
                         class="form-check-input bg-secondary-subtle"
                         type="checkbox"
-                        value="nextjs"
+                        value="true"
                         id="checkbox-nextjs"
                         name="vuejs" />
                     <label class="form-check-label fs-4" for="checkbox-nextjs">Vue Js</label>
@@ -146,10 +151,10 @@
                     <input
                         class="form-check-input bg-secondary-subtle"
                         type="checkbox"
-                        value="typescript"
-                        id="checkbox-typescript"
+                        value="true"
+                        id="checkbox-nodejs"
                         name="nodejs" />
-                    <label class="form-check-label fs-4" for="checkbox-typescript">Node Js</label>
+                    <label class="form-check-label fs-4" for="checkbox-nodejs">Node Js</label>
                 </div>
             </div>
             <div class="row mb-3 justify-content-center">

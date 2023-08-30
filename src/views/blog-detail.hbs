@@ -65,7 +65,7 @@
     <!-- Blog Detail -->
     <section >
         <div class="border p-5 bg-secondary-subtle">
-            <h2 class="text-center fw-bold fs-1">{{blog.title}}</h2>
+            <h2 class="text-center fw-bold fs-1">{{blog.name}}</h2>
             <div class="container">
                 <div class="row justify-content-between m-0 m-lg-5">
                     <div class="col-sm-3 d-lg-none d-block my-3">
@@ -79,22 +79,28 @@
                     </div>
                     <div class="col-sm-4">
                         <h4 class="fw-bold fs-3">Duration</h4>
-                        <p><i class="fa-regular fa-calendar-days"></i> Durasi : {{this.duration}} </p>
-                        <p><i class="fa-regular fa-clock"></i> 1 Moth</p>
+                        <p><i class="fa-regular fa-calendar-days"></i> Durasi : {{blog.duration}} </p>
+                        <p><i class="fa-regular fa-clock"></i> {{blog.start_date}} - {{blog.end_date}} </p>
                         <h4 class="fw-bold fs-3">Technologies</h4>
                         <div class="gap-5 fs-5 mb-3" style="display: flex;">
+                          {{#if blog.javascript}}
                           <a><i class="fa-brands fa-js"></i> JavaScript</a>
-                          <a><i class="fa-brands fa-react"></i> React Js</a>
-                        </div>
+                          {{/if}}
+                          {{#if blog.reactjs}}
+                          <a><i class="fa-brands fa-react"></i> React Js</a></div>
                         <div class="gap-5 fs-5 mb-3" style="display: flex;"> 
+                          {{/if}}
+                          {{#if blog.vuejs}}
                           <a><i class="fa-brands fa-vuejs"></i> Vue Js</a>
+                          {{/if}}
+                          {{#if blog.nodejs}}
                           <a style="margin-left: 35px;"><i class="fa-brands fa-node"></i> Node Js</a>
-                        </div>
+                          {{/if}}</div>
                     </div>
                 </div>
                 <div class="row">
                   <div class="col-sm-12">
-                    <p style="text-align: justify;" >{{blog.content}} </p>
+                    <p style="text-align: justify;" >{{blog.description}} </p>
                   </div>
                 </div>
             </div>

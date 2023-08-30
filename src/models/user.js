@@ -15,10 +15,10 @@ module.exports = (sequelize, DataTypes) => {
   }
   User.init({
     name: DataTypes.STRING,
-    start_date: DataTypes.STRING,
-    end_date: DataTypes.STRING,
-    description: DataTypes.STRING,
-    technologies: DataTypes.STRING,
+    start_date: DataTypes.DATEONLY,
+    end_date: DataTypes.DATEONLY,
+    description: DataTypes.TEXT,
+    technologies: DataTypes.ARRAY,
     image: DataTypes.STRING
   }, {
     sequelize,
