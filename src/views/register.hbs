@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Personal Web</title>
+    <link 
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" 
+      rel="stylesheet" 
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" 
+      crossorigin="anonymous">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body style="font-family: 'Poppins', sans-serif;">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg " style="background-color: #26292b;">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <img 
+            src="../image/R.png" 
+            alt="Bootstrap" 
+            width="40px" 
+            height="40px">
+        </a>
+        <button 
+            class="navbar-toggler text-white" 
+            type="button" 
+            data-bs-toggle="collapse" 
+            data-bs-target="#navbarSupportedContent" 
+            aria-controls="navbarSupportedContent" 
+            aria-expanded="false" 
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"><i class="fa-solid fa-bars my-1"></i></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item ms-3">
+              <a 
+                  class="nav-link active text-white fw-bold" 
+                  aria-current="page" 
+                  href="#">Home</a>
+            </li>
+            <li class="nav-item ms-3">
+              <a class="nav-link text-white fw-bold" href="/blog">Blog</a>
+            </li>
+          </ul>
+          <div class="d-flex justify-content-end">
+            <ul class="navbar-nav me-auto mb-2 ms-5 mb-lg-0">
+                <li class="nav-item me-3">
+                  <a class="nav-link fw-bold" href="/register" style="color: #a2b2ee;">Register</a>
+                </li>
+                <li class="nav-item me-3">
+                  <a class="nav-link text-white fw-bold" href="/login">Login</a>
+                </li>
+              </ul>
+          </div>
+          <form class="d-flex" role="search">
+            <a 
+                class=" btn btn-outline text-white fw-bold" 
+                style="background-color: #a2b2ee;" 
+                type="submit" href="/contact">Contact Me</a>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <!-- End Navbar -->
+
+    {{!-- Register --}}
+    <div class="container d-flex justify-content-center">
+      <div class="w-50">
+        <h3 class="text-center mt-5 fw-bold">CREATED YOUR ACCOUNT</h3>
+        <form action="/register" method="POST">
+          <div class="mb-3 fw-bold">
+            <label for="username" class="form-label">Name</label>
+            <input type="text" 
+                   name="name" 
+                   class="form-control shadow-sm bg-secondary-subtle" 
+                   id="username" 
+                   aria-describedby="emailHelp" />
+          </div>
+          <div class="mb-3 fw-bold">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" 
+                   name="email" 
+                   class="form-control shadow-sm bg-secondary-subtle" 
+                   id="email" 
+                   aria-describedby="emailHelp" />
+          </div>
+          <div class="mb-3 fw-bold">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" 
+                   class="form-control shadow-sm bg-secondary-subtle"
+                   name="password" 
+                   id="password" />
+          </div>
+          <button type="submit" 
+                  class="btn btn-black mt-3 px-5 fw-bold" 
+                  style="background-color: #a2b2ee;" >Submit</button>
+        </form>
+      </div>
+    </div>
+    {{!-- end regis --}}
+  </body>
+</html>

@@ -47,10 +47,34 @@
                   aria-current="page" 
                   href="/">Home</a>
             </li>
+            {{#if isLogin}}
             <li class="nav-item ms-3">
-              <a class="nav-link text-white fw-bold" href="/blog">Blog</a>
+              <a class="nav-link active text-white fw-bold" 
+                 href="/blog">Add Project</a>
             </li>
+            {{/if}}
           </ul>
+           <div class="d-flex justify-content-end">
+            <ul class="navbar-nav me-auto mb-2 ms-5 mb-lg-0">
+              {{#if isLogin}}
+                <li class="nav-item me-3">
+                  <a class="nav-link text-white fw-bold" 
+                     href="/#">Hello, {{sigin}}</a>
+                </li>
+                <li class="nav-item me-3">
+                  <a class="nav-link text-white fw-bold" href="/logout">Logout</a>
+                </li>
+                {{else}}
+                <li class="nav-item me-3">
+                  <a class="nav-link text-white fw-bold" 
+                     href="/register">Register</a>
+                </li>
+                <li class="nav-item me-3">
+                  <a class="nav-link text-white fw-bold" href="/login">Login</a>
+                </li>
+                {{/if}}
+              </ul>
+          </div>
           <form class="d-flex" role="search">
             <a 
                 class=" btn btn-outline active text-white fw-bold" 
