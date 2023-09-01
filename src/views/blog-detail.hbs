@@ -93,13 +93,13 @@
             <div class="container">
                 <div class="row justify-content-between m-0 m-lg-5">
                     <div class="col-sm-3 d-lg-none d-block my-3">
-                        <img src="../image/project-1.jpg" 
-                             alt="project-1"
+                        <img src="../{{blog.image}}" 
+                             alt="image is not"
                              width="270" height="150">
                     </div>
                     <div class="col-sm-6 d-lg-block d-none">
-                        <img src="../image/project-1.jpg" 
-                             alt="project-1">
+                        <img src="../{{blog.image}}" 
+                             alt="image is not">
                     </div>
                     <div class="col-sm-4">
                         <h4 class="fw-bold fs-3">Duration</h4>
@@ -121,6 +121,7 @@
                           <a style="margin-left: 35px;"><i class="fa-brands fa-node"></i> Node Js</a>
                           {{/if}}</div>
                     </div>
+                    <p class="fs-8 mt-3">Author : {{blog.author}}</p>
                 </div>
                 <div class="row">
                   <div class="col-sm-12">

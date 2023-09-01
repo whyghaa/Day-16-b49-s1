@@ -27,7 +27,7 @@
                     <h2 class="fw-bold ">Edit Blog</h2>
                 </div>
             </div>
-            <form method="post" action="/update-blog/{{blogIndex}}">
+            <form method="post" action="/update-blog/{{blogIndex}}" enctype="multipart/form-data">
             <div class="row mb-3 justify-content-center ">
                 <div class="col-8  ">
                     <label for="input-title" class="form-label fs-3">Project Name</label>
@@ -127,7 +127,7 @@
                            placeholder="{{blog.image}}"
 						   value="{{blog.image}}"
                            id="formFile" 
-                           name="images" />
+                           name="upload-image" />
                 </div>
             </div>
             <input type="hidden" name="blogIndex" value="{{blogIndex}}" />

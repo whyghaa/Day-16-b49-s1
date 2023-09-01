@@ -5,6 +5,8 @@ const path = require("path")
 const bcrypt = require('bcrypt')
 const session = require('express-session')
 const flash = require('express-flash')
+const upload = require('./src/middlewares/uploadFiles')
+
 
 // sequelize init
 const config = require('./src/config/config.json')
@@ -20,7 +22,7 @@ app.set("views",path.join(__dirname, "src/views"))
 app.use(express.static(path.join(__dirname, "src/assets")))
 
 // set serving static file specific
-app.use(express.static(path.join(__dirname, "src/assets/image")))
+app.use(express.static(path.join(__dirname, "src/uploads")))
 
 // //parsing data 
 app.use(express.urlencoded({ extended: false }))
@@ -44,11 +46,11 @@ app.use(session({
 //routing 
 app.get('/', home)
 app.get('/blog', blog)
-app.post('/blog', addBlog)
+app.post('/blog', upload.single('upload-image'), addBlog)
 app.get('/blog-detail/:id', blogDetail)
 app.get('/contact', contact)
 app.get("/edit-blog/:id", editBlog)
-app.post("/update-blog/:id", updateBlog)
+app.post("/update-blog/:id", upload.single("upload-image"), updateBlog)
 app.get("/delete-blog/:id", deleteBlog)
 
 // login, register, logout 
@@ -67,7 +69,12 @@ app.listen(PORT, () => {
 //index
 async function home(req, res) {
 	try {
-		const query = `SELECT * FROM public."Users";`
+		let query = `SELECT "Users".id, "Users".name, start_date, end_date, description, javascript, reactjs, vuejs, nodejs, duration, image, sigins.name AS author FROM "Users" LEFT JOIN sigins ON "Users".author = sigins.id `
+		if (req.session.isLogin) {
+			query += ` WHERE "Users".author = ${req.session.idUser}`
+		}
+			query += ` ORDER BY "Users".id DESC`;
+
 		let obj = await sequelize.query(query, { type: QueryTypes.SELECT })
 
 		const data = obj.map((res) => ({
@@ -106,7 +113,8 @@ async function addBlog(req, res) {
 			vuejs,
 			nodejs,
 		} = req.body;
-		const image = "project-1.jpg"
+		const image = req.file.filename;
+		const author = req.session.idUser;
 
 	let start = new Date(start_date);
 	let end = new Date(end_date);
@@ -139,7 +147,7 @@ async function addBlog(req, res) {
 	const nodejsValue = nodejs === "true" ? true : false;
 
 	await sequelize.query(
-		`INSERT INTO "Users" (name, start_date, end_date, description, nodejs, reactjs, javascript, vuejs, duration, image) VALUES ('${name}','${start_date}','${end_date}','${description}',${nodejsValue},${reactjsValue},${vuejsValue},${javascriptValue},'${duration}','${image}')`
+		`INSERT INTO "Users" (name, start_date, end_date, description, nodejs, reactjs, javascript, vuejs, duration, image, author) VALUES ('${name}','${start_date}','${end_date}','${description}',${nodejsValue},${reactjsValue},${vuejsValue},${javascriptValue},'${duration}','${image}',${author})`
 	);
 
 	res.redirect("/");
@@ -175,7 +183,8 @@ async function updateBlog(req, res) {
 			vuejs,
 			nodejs,
 		} = req.body;
-		const image = "project-1.jpg"
+		const image = req.file.filename;
+		const author = req.session.idUser;
 	
 		let start = new Date(start_date);
 		let end = new Date(end_date);
@@ -208,7 +217,7 @@ async function updateBlog(req, res) {
 		const nodejsValue = nodejs === "true" ? true : false;
 
 		await sequelize.query(
-			`UPDATE public."Users" SET name='${name}', start_date='${start_date}', end_date='${end_date}', description='${description}', nodejs=${nodejsValue}, reactjs=${reactjsValue}, vuejs=${vuejsValue}, javascript=${javascriptValue}, duration='${duration}', image='${image}' WHERE id=${id};`,
+			`UPDATE public."Users" SET name='${name}', start_date='${start_date}', end_date='${end_date}', description='${description}', nodejs=${nodejsValue}, reactjs=${reactjsValue}, vuejs=${vuejsValue}, javascript=${javascriptValue}, duration='${duration}', image='${image}', author=${author} WHERE id=${id};`,
 			{
 				type: sequelize.QueryTypes.UPDATE,
 			}
@@ -223,10 +232,21 @@ async function updateBlog(req, res) {
 //blog-detail
 async function blogDetail(req, res) {
 	try {
-		const { id } = req.params;
-		const  query = `SELECT * FROM "Users" WHERE id=${id}`
-		const obj = await sequelize.query(query, {type: QueryTypes.SELECT})
+		// const { id } = req.params;
+		// console.log(id);
+		const idParam = req.params.id;
+		const blogId = parseInt(idParam);
 
+		if (!Number.isInteger(blogId)) {
+			// Tangani kesalahan jika ID tidak valid
+			res.status(400).json({ error: "ID tidak valid" });
+			return;
+		}
+
+		const  query = `SELECT "Users".id, "Users".name, start_date, end_date, description, javascript, reactjs, vuejs, nodejs, duration, image, sigins.name AS author FROM "Users" LEFT JOIN sigins ON "Users".author = sigins.id WHERE "Users".id = ${blogId}`
+		const obj = await sequelize.query(query, {type: QueryTypes.SELECT,replacements: { blogId: blogId },})
+
+		console.log(obj)
 		const data = obj.map(res => ({
 			...res,
 		}))
@@ -295,18 +315,19 @@ function formLogin(req, res) {
   
 	  // Memeriksa apakah email belum terdaftar
 	  if(!obj.length) {
-		req.flash('danger', "Anda Belom Terdaftar!")
+		req.flash('danger', "You are not registered yet!")
 		return res.redirect('/login')
 	  }
   
 	  await bcrypt.compare(password, obj[0].password, (err, result) => {
 		if(!result) {
-		  req.flash('danger', 'Password Yang Anda Masukan Salah!')
+		  req.flash('danger', 'The password you entered is incorrect!')
 		  return res.redirect('/login')
 		} else {
 		  req.session.isLogin = true
+		  req.session.idUser = obj[0].id;
 		  req.session.sigin = obj[0].name
-		  req.flash('success', 'Login Sukses')
+		  req.flash('success', 'Login Successful')
 		  res.redirect('/')
 		}
 	  })

@@ -153,50 +153,107 @@
           </div>
           <div class="row">
             {{#each data}}
-            <div class="col-lg-4 d-flex flex-column justify-content-center mb-5 ms-4 ms-lg-0">
-              <div class="card p-2 " style="width: 320px; box-shadow: 0 0 10px black;">
-                <img src="{{this.image}}" class="card-img-top" alt="project1">
-                <div class="card-body">
-                  <h5 class="card-title fw-bold" 
-                        href="/blog-detail/{{this.id}}"
-                        class="text-decoration-none text-dark"
-                        target="_blank">
-                    <a href="/blog-detail/{{this.id}}" 
-                       style="color: black; text-decoration: none;">{{this.name}}</a></h5>
-                  <p class="mt-3" style="font-size: 14px;">{{this.start_date}} - {{this.end_date}}</p>
-                  <p class="mt-3" style="font-size: 14px;">Durasi : {{this.duration}}</p>
-                  <p class="card-text" 
-                style="text-align: justify; 
-                overflow: hidden; 
-                display: -webkit-box; 
-                -webkit-line-clamp: 4;
-                -webkit-box-orient: vertical;">{{this.description}}</p>
-                  <div class="gap-5 fs-3 mb-3">
-                    {{#if this.javascript}}
-                    <a><i class="fa-brands fa-js"></i></a>
-                    {{/if}}
-                    {{#if this.reactjs}}
-                    <a><i class="fa-brands fa-react"></i></a>
-                    {{/if}}
-                    {{#if this.vuejs}}
-                    <a><i class="fa-brands fa-vuejs"></i></a>
-                    {{/if}}
-                    {{#if this.nodejs}}
-                    <a><i class="fa-brands fa-node"></i></a>
+             {{#if isLogin}}
+							{{#if this.author}}
+              <div class="col-lg-4 d-flex flex-column justify-content-center mb-5 ms-4 ms-lg-0">
+                <div class="card p-2 " style="width: 320px; box-shadow: 0 0 10px black;">
+                  <img src="{{this.image}}" class="card-img-top" alt="image is not">
+                  <div class="card-body">
+                    <h5 class="card-title fw-bold" 
+                          href="/blog-detail/{{this.id}}"
+                          class="text-decoration-none text-dark"
+                          target="_blank">
+                      <a href="/blog-detail/{{this.id}}" 
+                        style="color: black; text-decoration: none;">{{this.name}}</a></h5>
+                    <p class="mt-3" style="font-size: 14px;">{{this.start_date}} - {{this.end_date}}</p>
+                    <p class="mt-3" style="font-size: 14px;">Durasi : {{this.duration}}</p>
+                    <p class="card-text" 
+                  style="text-align: justify; 
+                  overflow: hidden; 
+                  display: -webkit-box; 
+                  -webkit-line-clamp: 4;
+                  -webkit-box-orient: vertical;">{{this.description}}</p>
+                    <div class="gap-5 fs-3 mb-3">
+                      {{#if this.javascript}}
+                      <a><i class="fa-brands fa-js"></i></a>
+                      {{/if}}
+                      {{#if this.reactjs}}
+                      <a><i class="fa-brands fa-react"></i></a>
+                      {{/if}}
+                      {{#if this.vuejs}}
+                      <a><i class="fa-brands fa-vuejs"></i></a>
+                      {{/if}}
+                      {{#if this.nodejs}}
+                      <a><i class="fa-brands fa-node"></i></a>
+                      {{/if}}
+                    </div>
+                    <p class="fs-8 text-end">- {{this.author}}</p>
+                    {{#if this.isLogin}}
+                    <div class="d-flex justify-content-between">
+                      <button class="btn btn-dark rounded-pill px-5"><a href="/edit-blog/{{this.id}}
+                      "style="text-decoration: none ; color:white;">Edit</a></button>
+                      <button class="btn btn-dark rounded-pill px-5"><a href="/delete-blog/{{this.id}}
+                      "style="text-decoration: none ; color:white;">Delete</a></button>
+                    </div>
                     {{/if}}
                   </div>
-                  {{#if this.isLogin}}
-                  <div class="d-flex justify-content-between">
-                    <button class="btn btn-dark rounded-pill px-5"><a href="/edit-blog/{{this.id}}
-                    "style="text-decoration: none ; color:white;">Edit</a></button>
-                    <button class="btn btn-dark rounded-pill px-5"><a href="/delete-blog/{{this.id}}
-                    "style="text-decoration: none ; color:white;">Delete</a></button>
-                  </div>
-                  {{/if}}
                 </div>
               </div>
-            </div>
+              {{/if}}
+              {{else}}
+               <div class="col-lg-4 d-flex flex-column justify-content-center mb-5 ms-4 ms-lg-0">
+                <div class="card p-2 " style="width: 320px; box-shadow: 0 0 10px black;">
+                  <img src="{{this.image}}" class="card-img-top" alt="image is not">
+                  <div class="card-body">
+                    <h5 class="card-title fw-bold" 
+                          href="/blog-detail/{{this.id}}"
+                          class="text-decoration-none text-dark"
+                          target="_blank">
+                      <a href="/blog-detail/{{this.id}}" 
+                        style="color: black; text-decoration: none;">{{this.name}}</a></h5>
+                    <p class="mt-3" style="font-size: 14px;">{{this.start_date}} - {{this.end_date}}</p>
+                    <p class="mt-3" style="font-size: 14px;">Durasi : {{this.duration}}</p>
+                    <p class="card-text" 
+                  style="text-align: justify; 
+                  overflow: hidden; 
+                  display: -webkit-box; 
+                  -webkit-line-clamp: 4;
+                  -webkit-box-orient: vertical;">{{this.description}}</p>
+                    <div class="gap-5 fs-3 mb-3">
+                      {{#if this.javascript}}
+                      <a><i class="fa-brands fa-js"></i></a>
+                      {{/if}}
+                      {{#if this.reactjs}}
+                      <a><i class="fa-brands fa-react"></i></a>
+                      {{/if}}
+                      {{#if this.vuejs}}
+                      <a><i class="fa-brands fa-vuejs"></i></a>
+                      {{/if}}
+                      {{#if this.nodejs}}
+                      <a><i class="fa-brands fa-node"></i></a>
+                      {{/if}}
+                    </div>
+                    <p class="fs-8 text-end">- {{this.author}}</p>
+                    {{#if this.isLogin}}
+                    <div class="d-flex justify-content-between">
+                      <button class="btn btn-dark rounded-pill px-5"><a href="/edit-blog/{{this.id}}
+                      "style="text-decoration: none ; color:white;">Edit</a></button>
+                      <button class="btn btn-dark rounded-pill px-5"><a href="/delete-blog/{{this.id}}
+                      "style="text-decoration: none ; color:white;">Delete</a></button>
+                    </div>
+                    {{/if}}
+                  </div>
+                </div>
+              </div>
+              {{/if}}
             {{/each}}
+            <!-- Tampilkan pesan jika tidak ada card project yang sesuai -->
+            {{#if isLogin}}
+              {{#unless data}}
+                <p class="text-center">Anda belum memiliki card project.
+                  <a href="/blog">Tambahkan project baru</a></p>
+              {{/unless}}
+            {{/if}}
           </div>
         </div>
       </section>

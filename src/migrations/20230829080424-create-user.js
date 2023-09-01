@@ -10,7 +10,14 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER,
+      },
+      author: {
+        type: Sequelize.INTEGER,
+				references: {
+					model: 'sigins',
+					key: 'id',
+				},
       },
       start_date: {
         type: Sequelize.DATEONLY
@@ -21,11 +28,6 @@ module.exports = {
       description: {
         type: Sequelize.TEXT
       },
-      // technologies: {
-      //   type: Sequelize.ARRAY(Sequelize.STRING)
-      // allowNull: false,
-			// 	defaultValue: [],
-      // },
       javascript: {
         type: Sequelize.BOOLEAN,
       },
@@ -41,13 +43,6 @@ module.exports = {
 			image: {
         type: Sequelize.STRING,
 			},
-      // createdAt: {
-      //   allowNull: false, //   type: Sequelize.DATE
-      // },
-      // updatedAt: {
-      //   allowNull: false,
-      //   type: Sequelize.DATE
-      // }
     });
   },
   async down(queryInterface, Sequelize) {
